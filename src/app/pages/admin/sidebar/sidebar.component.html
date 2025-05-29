@@ -1,0 +1,32 @@
+<mat-nav-list id="nav">
+    <a *ngFor="let item of routes" mat-list-item class="nav-link " routerLinkActive="active-link" [routerLink]="['/admin/', item.path]">
+        <mat-icon class="sidenav-icon" style="color: #1f2937b4!important;">{{ item.data.icon }}</mat-icon>&nbsp;&nbsp;
+        <span style="color: #1f2937b4!important;">  {{ item.data.text }}</span>
+    </a>
+    <a mat-list-item class="nav-link " routerLinkActive="active-link" [routerLink]="['/admin/blank']">
+        <mat-icon class="sidenav-icon" style="color: #1f2937b4!important;">insert_drive_file</mat-icon> &nbsp;&nbsp;
+        <Span style="color: #1f2937b4!important;">Blank page</Span>
+    </a>
+    <div class="nested-menu">
+        <a mat-list-item (click)="showMenu = !showMenu" class="nav-link " routerLinkActive="active-link">
+            <mat-icon class="sidenav-icon" style="color: #1f2937b4!important;">add</mat-icon> &nbsp;&nbsp;<span style="color: #1f2937b4!important;">Menu</span>
+        </a>
+        <ul class="nested submenu" [class.expand]="showMenu">
+            <li>
+                <a mat-list-item class="nav-link " routerLinkActive="active-link" [routerLink]="['/admin/personnels']">
+                    <span>Submenu</span>
+                </a>
+            </li>
+            <li>
+                <a href="javascript:void(0)">
+                    <span>Submenu</span>
+                </a>
+            </li>
+            <li>
+                <a href="javascript:void(0)">
+                    <span>Submenu</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+</mat-nav-list>

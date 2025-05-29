@@ -1,0 +1,8 @@
+<h1 mat-dialog-title align="center">Confirmation</h1>
+<mat-dialog-content>
+    <p>{{mensaje}}</p>
+</mat-dialog-content>
+<mat-dialog-actions align="center">
+    <button mat-raised-button (click)="cerrarDialogo()" style="background-color: rgba(255, 0, 0, 0.897)!important;color: #fff;" tabindex="1">Nom</button>
+    <button mat-raised-button (click)="confirmado()" tabindex="-1" cdkFocusInitial>Oui</button>
+</mat-dialog-actions>

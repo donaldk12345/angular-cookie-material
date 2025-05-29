@@ -1,0 +1,61 @@
+<!-- Replace fxLayout with CSS Flexbox -->
+<div class="stat-container">
+    <div class="stat-box danger">
+        <app-stats [bgClass]="'danger'" [icon]="'bookmarks'" [count]="13" [label]="'New Tickets!'"></app-stats>
+    </div>
+    <div class="stat-box warn">
+        <app-stats [bgClass]="'warn'" [icon]="'view_list'" [count]="12" [label]="'New Task!'"></app-stats>
+    </div>
+    <div class="stat-box success">
+        <app-stats [bgClass]="'success'" [icon]="'shopping_cart'" [count]="124" [label]="'New Orders!'"></app-stats>
+    </div>
+    <div class="stat-box info">
+        <app-stats [bgClass]="'info'" [icon]="'contact_support'" [count]="13" [label]="'New Tickets!'"></app-stats>
+    </div>
+</div>
+
+<!-- Use CSS Grid instead of fxLayout -->
+<div class="card-container">
+    <mat-card *ngFor="let item of places">
+        <img mat-card-image [src]="item.imgSrc">
+        <mat-card-header>
+            <mat-card-title>
+                <h3 class="m-0">{{ item.name }}</h3>
+            </mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+            {{ item.description }}
+        </mat-card-content>
+        <mat-card-actions>
+            <button mat-button>{{ item.charge }}</button>
+            <button mat-button>
+        <mat-icon class="location-icon">location_on</mat-icon> {{ item.location }}
+      </button>
+        </mat-card-actions>
+    </mat-card>
+</div>
+
+<form class="example-form">
+    <mat-form-field class="example-full-width">
+        <mat-label>Favorite food</mat-label>
+        <input matInput placeholder="Ex. Pizza" value="Sushi">
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width">
+        <mat-label>Leave a comment</mat-label>
+        <textarea matInput placeholder="Ex. It makes me feel..."></textarea>
+    </mat-form-field>
+</form>
+
+<form class="example-form">
+    <mat-form-field class="example-full-width">
+        <mat-label>Email</mat-label>
+        <input type="email" matInput [errorStateMatcher]="matcher" placeholder="Ex. pat@example.com">
+        <mat-hint>Errors appear instantly!</mat-hint>
+        @if (emailFormControl.hasError('email') && !emailFormControl.hasError('required')) {
+        <mat-error>Please enter a valid email address</mat-error>
+        } @if (emailFormControl.hasError('required')) {
+        <mat-error>Email is <strong>required</strong></mat-error>
+        }
+    </mat-form-field>
+</form>
