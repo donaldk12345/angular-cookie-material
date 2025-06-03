@@ -5,6 +5,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { UsersComponent } from './users/users.component';
 import { BlankpageComponent } from './blankpage/blankpage.component';
 import { PersonnelsComponent } from './personnels/personnels.component';
+import { EditUsersComponent } from './users/edit-users/edit-users.component';
 
 const routes: Routes = [
   {
@@ -13,6 +14,7 @@ const routes: Routes = [
          { path: 'dashboard', component: DashboardComponent},
          { path: 'users', component: UsersComponent},
         { path: 'blank', component: BlankpageComponent},
+          {path: 'user/:id',component:EditUsersComponent},
         { path: 'personnels', component: PersonnelsComponent},
      ]
   }

@@ -1,0 +1,97 @@
+<div class="custom">
+    <mat-card class="card">
+        <div mat-dialog-title style="justify-content: center; text-align: center;font-weight: bold;">
+            <h2> Modifier un utilisateur </h2>
+        </div>
+        <form [formGroup]="userForm" (ngSubmit)="onFormSubmitUpdate()">
+            <div mat-dialog-content class="content">
+                <div class="row">
+                    <mat-form-field>
+                        <mat-label>Nom</mat-label>
+                        <input matInput type="text" placeholder="Nom" formControlName="username">
+                        <mat-error *ngIf="username.errors?.['required']" style="color:red ;">Le champ est requis.</mat-error>
+                    </mat-form-field>
+                    <mat-form-field>
+                        <mat-label>Mot de passe</mat-label>
+                        <input matInput placeholder="Password" [type]="hide ? 'password' : 'text'" formControlName="password">
+                        <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                    </mat-form-field>
+                </div>
+
+                <div class="row">
+                    <mat-form-field>
+                        <mat-label>Email</mat-label>
+                        <input matInput type="email" placeholder="Ex. test@gmail.com" formControlName="email">
+
+                    </mat-form-field>
+                    <mat-form-field>
+                        <mat-label>Statut</mat-label>
+                        <mat-select formControlName="isEnabled">
+                            @for (item of enablevalue; track item) {
+                            <mat-option [value]="item.ids">{{item.val}}</mat-option>
+                            }
+                        </mat-select>
+                        <mat-error *ngIf="isEnabled.errors?.['required']" style="color:red ;">Le champ est requis.</mat-error>
+                    </mat-form-field>
+                </div>
+
+                <div class="row">
+                    <mat-form-field>
+                        <mat-label>Expire</mat-label>
+                        <mat-select formControlName="isexpired">
+                            @for (item of expiredvalue; track item) {
+                            <mat-option [value]="item.ids">{{item.val}}</mat-option>
+                            }
+                        </mat-select>
+                        <mat-error *ngIf="isexpired.errors?.['required']" style="color:red ;">Le champ est requis.</mat-error>
+                    </mat-form-field>
+                    <mat-form-field>
+                        <mat-label>Expire Date</mat-label>
+                        <input matInput [matDatepicker]="picker" formControlName="expiredate">
+                        <mat-error *ngIf="expiredate.errors?.['required']" style="color:red ;">Le champ est requis.</mat-error>
+                        <mat-hint>MM/DD/YYYY</mat-hint>
+                        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                        <mat-datepicker #picker></mat-datepicker>
+                    </mat-form-field>
+                </div>
+
+                <div class="row">
+                    <mat-radio-group aria-label="Select an option" formControlName="gender">
+                        <mat-label><b>Sexe</b></mat-label>
+                        <mat-radio-button value="male">Male</mat-radio-button>
+                        <mat-radio-button value="female">Female</mat-radio-button>
+                        <mat-radio-button value="others">Others</mat-radio-button>
+                    </mat-radio-group>
+                    <p>
+                        <mat-error *ngIf="gender.errors?.['required']" style="color:red ; font-size: 12px;"><span>Le champ est requis.</span></mat-error>
+                    </p>
+
+                </div>
+
+                <div class="row">
+                    <mat-form-field>
+                        <mat-label>Role</mat-label>
+                        <mat-select formControlName="role">
+                            <mat-option *ngFor="let val of role" [value]="val">{{val}}
+                            </mat-option>
+                        </mat-select>
+                        <mat-error *ngIf="role1.errors?.['required']" style="color:red ;">Le champ est requis.</mat-error>
+                    </mat-form-field>
+                    <mat-form-field>
+                        <mat-label>Permissions</mat-label>
+                        <mat-select formControlName="permissions" multiple>
+                            @for (topping of permissionsFilter; track topping) {
+                            <mat-option [value]="topping">{{topping}}</mat-option>
+                            }
+                        </mat-select>
+
+                    </mat-form-field>
+                </div>
+            </div>
+            <div mat-dialog-actions class="action" style="">
+                <button mat-raised-button type="button" [mat-dialog-close]="false">Annuler</button>&nbsp;&nbsp;&nbsp;&nbsp;
+                <button mat-raised-button color="primary" type="submit" [disabled]="userForm.status != 'VALID'">Modifier</button>
+            </div>
+        </form>
+    </mat-card>
+</div>

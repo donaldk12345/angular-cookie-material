@@ -42,7 +42,7 @@ export class AuthComponent {
 
     this.authService.signIn(this.form.value).subscribe({
       next: () => {
-        this.router.navigate(['/home']);
+        this.router.navigate(['/admin']);
       },
       error: (error: HttpErrorResponse) => {
         console.error(error);

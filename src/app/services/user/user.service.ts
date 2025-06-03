@@ -16,7 +16,29 @@ export class UserService {
   }
 
   updateUser(id: number, data: any): Observable<any> {
-    return this.api.post(`user/edit/${id}`,data);
+    return this.api.post('user/edit/'+id,data);
   }
+
+  getUsersFilter(params:any): Observable<any>{
+
+    return this.api.getElementParams('user/list',params);
+  }
+
+    getUsers(): Observable<any>{
+
+    return this.api.get('user/list');
+  }
+
+      getUserById(id:number): Observable<any>{
+
+    return this.api.get('user/' +id);
+  }
+
+       getUserPermissions(id:number): Observable<any>{
+
+    return this.api.get('user/permissions/' +id);
+  }
+
+  
 
 }

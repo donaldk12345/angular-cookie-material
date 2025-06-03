@@ -16,6 +16,8 @@ import { AdminModule } from './pages/admin/admin.module';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
+import { ToastService, AngularToastifyModule } from 'angular-toastify'; 
+import { httpInterceptorProviders } from './interceptor/auth.interceptor';
 
 @NgModule({
   declarations: [AppComponent, AuthComponent, HomeComponent],
@@ -27,6 +29,7 @@ import { MatSelectModule } from '@angular/material/select';
     MatButtonModule,
     MatFormFieldModule,
     MatInputModule,
+        AngularToastifyModule,
     MatSelectModule,
     AdminModule,
     MatDividerModule,
@@ -36,7 +39,8 @@ import { MatSelectModule } from '@angular/material/select';
   ],
   bootstrap: [AppComponent],
   providers: [
-    provideAnimationsAsync()
+    provideAnimationsAsync(),
+    httpInterceptorProviders
   ],
 })
 export class AppModule {}

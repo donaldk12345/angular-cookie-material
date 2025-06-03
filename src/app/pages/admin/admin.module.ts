@@ -26,13 +26,16 @@ import { PersonnelsComponent } from './personnels/personnels.component';
 import { ConfirmationDialogComponent } from './confirmation-dialog/confirmation-dialog.component';
 import { DialogConfirmationComponent } from './dialog-confirmation/dialog-confirmation.component';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import {MatProgressBarModule} from '@angular/material/progress-bar';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
+import { ToastService, AngularToastifyModule } from 'angular-toastify'; 
 import { UsersInputAddComponent } from './users/users-input-add/users-input-add.component';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
-
+import { EditUsersComponent } from './users/edit-users/edit-users.component';
 @NgModule({
   declarations: [
     AdminComponent,
@@ -45,6 +48,7 @@ import { MatNativeDateModule } from '@angular/material/core';
     PersonnelsComponent,
     ConfirmationDialogComponent,
     DialogConfirmationComponent,
+    EditUsersComponent,
   ],
   imports: [
     CommonModule,
@@ -53,7 +57,10 @@ import { MatNativeDateModule } from '@angular/material/core';
     MatDialogModule,
     FormsModule,
     MatRadioModule,
+     AngularToastifyModule,
     ReactiveFormsModule,
+    MatProgressSpinnerModule,
+   MatProgressBarModule,
     MatPaginatorModule,
     MatTooltipModule,
     MatNativeDateModule,

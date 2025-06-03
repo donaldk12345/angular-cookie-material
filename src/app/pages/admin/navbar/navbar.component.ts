@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { ConfirmationDialogComponent } from '../confirmation-dialog/confirmation-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogConfirmationComponent } from '../dialog-confirmation/dialog-confirmation.component';
+import { AuthService } from '../../../services/auth.service';
 
 @Component({
   selector: 'app-navbar',
@@ -13,7 +14,7 @@ export class NavbarComponent  implements OnInit{
 
   @Output() sideNavToggled = new EventEmitter<void>();
 
-  constructor(private readonly router: Router,private dialog: MatDialog) {}
+  constructor(private readonly router: Router,private dialog: MatDialog,private auth:AuthService) {}
 
   ngOnInit() {}
 
@@ -34,6 +35,7 @@ export class NavbarComponent  implements OnInit{
     }
 
   onLoggedout() {
+    this.auth.logout();
     localStorage.removeItem('isLoggedin');
     this.router.navigate(['/auth']);
   }

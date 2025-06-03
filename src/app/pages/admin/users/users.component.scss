@@ -18,3 +18,24 @@ table {
     gap: 5px;
     justify-content: space-between;
 }
+
+.table-container {
+    max-height: 400px;
+    overflow: auto;
+}
+
+table {
+    width: 100%;
+}
+
+.mainHeader {
+    border-bottom: none;
+}
+
+.progressBarRow {
+    min-height: 5px;
+}
+
+.progressBarRow .progressBarCell {
+    padding: 0;
+}
