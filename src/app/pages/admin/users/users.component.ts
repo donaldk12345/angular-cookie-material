@@ -14,6 +14,7 @@ import { UsersInputAddComponent } from './users-input-add/users-input-add.compon
 import { UserService } from '../../../services/user/user.service';
 import { ToastService } from 'angular-toastify';
 import { formatDate } from '@angular/common';
+import { UserDetailsComponent } from './user-details/user-details.component';
 @Component({
   selector: 'app-users',
   templateUrl: './users.component.html',
@@ -29,11 +30,11 @@ export class UsersComponent implements AfterViewInit,OnInit{
   userForm: FormGroup = Object.create(null);
   positionOptions: TooltipPosition[] = ['after', 'before', 'above', 'below', 'left', 'right'];
   position = new FormControl(this.positionOptions[0]);
-  loading = true;
+  loading = false;
   users:any[]=[];
 addDialogDisplay: boolean =false;
   constructor(private dialog: MatDialog,private snack: MatSnackBar,private userService:UserService,private _toastService: ToastService) {
-      setTimeout(() => (this.loading = false), 3000);
+   
   }
   ngOnInit(): void {
    this.userForm = new FormGroup({
@@ -63,6 +64,21 @@ this.getUserList();
         if (val) {
           this._toastService.success('utilisateur créé avec succès');
           this.getUserList();
+        }
+      },
+    });
+  }
+
+    openUSerDetailsDialog(data:any) {
+     const dialogRef = this.dialog.open(UserDetailsComponent, {
+      data,
+       height: 'auto',
+      width: '600px',
+    });
+    dialogRef.afterClosed().subscribe({
+      next: (val) => {
+        if (val) {
+
         }
       },
     });
@@ -104,7 +120,7 @@ this.getUserList();
       this.loading=true;
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
-
+       this.loading=false;
     if (this.dataSource.paginator) {
       this.dataSource.paginator.firstPage();
       this.loading=false;
@@ -112,9 +128,11 @@ this.getUserList();
   }
 
     getUserList(){
+      this.loading=true;
        this.userService.getUsers().subscribe({
      next: data =>{
       this.users=data.content;
+          this.loading=false;
        this.dataSource = new MatTableDataSource(data.content);
       console.log("users",this.dataSource);
      }

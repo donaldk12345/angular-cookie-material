@@ -36,6 +36,7 @@ import { UsersInputAddComponent } from './users/users-input-add/users-input-add.
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { EditUsersComponent } from './users/edit-users/edit-users.component';
+import { UserDetailsComponent } from './users/user-details/user-details.component';
 @NgModule({
   declarations: [
     AdminComponent,
@@ -49,6 +50,7 @@ import { EditUsersComponent } from './users/edit-users/edit-users.component';
     ConfirmationDialogComponent,
     DialogConfirmationComponent,
     EditUsersComponent,
+    UserDetailsComponent,
   ],
   imports: [
     CommonModule,

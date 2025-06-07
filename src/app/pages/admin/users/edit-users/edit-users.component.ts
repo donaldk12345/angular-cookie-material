@@ -22,11 +22,12 @@ export class EditUsersComponent implements OnInit{
   hide = true;
   role: string[] = [
     'USER',
-    'ADMIN'
+    'ADMIN',
+    'MANAGER'
   ];
   Id: any;
 
-    constructor(private userService:UserService,private _toastService: ToastService,private route: ActivatedRoute,private router:Router,) {
+    constructor(private userService:UserService,private toastService: ToastService,private route: ActivatedRoute,private router:Router,) {
     
     }
 
@@ -36,7 +37,7 @@ export class EditUsersComponent implements OnInit{
    'email' : new FormControl(''),
    'password': new FormControl(''),
    'role': new FormControl('',[Validators.required]),
-   'expiredate': new FormControl('',[Validators.required]),
+   'expiredate': new FormControl(''),
    'isEnabled': new FormControl('',[Validators.required]),
    'isexpired': new FormControl('',[Validators.required]),
    'gender': new FormControl('',[Validators.required]),
@@ -121,6 +122,25 @@ this.getExpired();
     onFormSubmitUpdate() {
 throw new Error('Method not implemented.');
 }
+
+ updateUser(){
+
+    this.userService.updateUser(this.Id, this.userForm.value).subscribe({
+      next: data => {
+        console.log("data",data);
+          this.toastService.success("Utilisateur Modifier avec succès.");
+          this.router.navigate(['/admin/users']);
+      },
+      error: error => {
+
+          console.log('There was an error!', error);
+          this.toastService.error(error);
+        
+      }
+  })
+
+  }
+
 
     get username(){
     return this.userForm.controls['username'];

@@ -16,7 +16,7 @@ export class UserService {
   }
 
   updateUser(id: number, data: any): Observable<any> {
-    return this.api.post('user/edit/'+id,data);
+    return this.api.putElement('user/'+id,data);
   }
 
   getUsersFilter(params:any): Observable<any>{

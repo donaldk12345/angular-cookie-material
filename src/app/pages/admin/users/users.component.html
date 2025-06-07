@@ -58,8 +58,8 @@
             <!-- Symbol Column -->
             <ng-container matColumnDef="expired">
                 <th mat-header-cell *matHeaderCellDef> Expire </th>
-                <td mat-cell *matCellDef="let element"> <span *ngIf="element.expired==true" style="padding:10px 20px; background-color: rgba(0, 128, 0, 0.242);">Activer <small style="color: transparent;">bbb</small>   </span>
-                    <span *ngIf="element.expired==false" style="padding:10px 20px; background-color: rgba(128, 0, 15, 0.147);">Désactiver </span>
+                <td mat-cell *matCellDef="let element"> <span *ngIf="element.expired==true" style="padding:10px 23px; background-color: rgba(0, 128, 0, 0.242);">OUI<small style="color: transparent;"></small></span>
+                    <span *ngIf="element.expired==false" style="padding:10px 20px; background-color: rgba(128, 0, 15, 0.147);">NON</span>
                 </td>
             </ng-container>
 
@@ -72,7 +72,7 @@
                     <button mat-icon-button matTooltip="Modifier les informations" [matTooltipPosition]="position.value!" aria-label="Example icon button with a delete icon" [routerLink]="['/admin/user', element.id]">
                      <mat-icon style="color:#0f174cc8;">edit</mat-icon>
                   </button>
-                    <button mat-icon-button matTooltip="Détails" [matTooltipPosition]="position.value!" aria-label="Example icon button with a delete icon">
+                    <button mat-icon-button matTooltip="Détails" [matTooltipPosition]="position.value!" (click)="openUSerDetailsDialog(element)" aria-label="Example icon button with a delete icon">
                      <mat-icon style="color:#0f3d4cc8;">remove_red_eye</mat-icon>
                   </button>
                     <button mat-icon-button title="Modifier le mot de passe" matTooltip="Modifier le mot de passe" [matTooltipPosition]="position.value!" aria-label="Example icon button with a delete icon">

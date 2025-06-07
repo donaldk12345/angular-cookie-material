@@ -19,11 +19,12 @@ form: any;
   hide = true;
 title:any;
 formControl: any;
-  toppingList: string[] = ['USER_CREATE', 'USER_UPDATE', 'USER_READ', 'USER_DELETE'];
+  toppingList: string[] = ['CREATE', 'UPDATE', 'READ', 'DELETE'];
 
   role: string[] = [
     'USER',
-    'ADMIN'
+    'ADMIN',
+    'MANAGER'
   ];
   enablevalue:any []= [];
   expiredvalue: any []= [];

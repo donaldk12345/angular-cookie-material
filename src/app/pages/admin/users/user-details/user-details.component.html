@@ -1,0 +1,31 @@
+<div mat-dialog-title style="justify-content: center; text-align: center;font-weight: bold;">
+    <h2>Détails sur l'utilisateur</h2>
+</div>
+<div>
+    <mat-dialog-content class="mat-typography">
+        <p> <span style="font-weight: bold;">Nom:  {{userDate?.username}} </span></p>
+        <mat-divider></mat-divider>
+        <p> <span style="font-weight: bold;">Email:  {{userDate?.email}} </span></p>
+        <mat-divider></mat-divider>
+        <p> <span style="font-weight: bold;">Role:  {{userDate?.role}} </span></p>
+        <mat-divider></mat-divider>
+        <p> <span style="font-weight: bold;">Email:  {{userDate?.email}} </span></p>
+        <mat-divider></mat-divider>
+        <p> <span style="font-weight: bold;">Date de création :  {{userDate?.date| date: 'MM/dd/yyyy HH:mm'}} </span></p>
+        <mat-divider></mat-divider>
+        <p> <span style="font-weight: bold;">Le compte expire :  <span *ngIf="userDate?.expired==true"> OUI</span> <span *ngIf="userDate?.expired==false"> NON</span> </span>
+        </p>
+        <mat-divider></mat-divider>
+        <p> <span style="font-weight: bold;">Date d'expiration:  {{userDate?.expiredDate| date: 'MM/dd/yyyy HH:mm'}} </span></p>
+        <mat-divider></mat-divider>
+        <p> <span style="font-weight: bold;">permissions: <span *ngFor="let item of permissionsFilter "> <span> {{item}} </span> </span>
+            </span>
+        </p>
+        <mat-divider></mat-divider>
+        <br>
+    </mat-dialog-content>
+    <div>
+
+    </div>
+
+</div>
