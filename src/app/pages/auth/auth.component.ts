@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
 import { HttpErrorResponse } from '@angular/common/http';
+import { ToastService } from 'angular-toastify';
 
 @Component({
   selector: 'app-auth',
@@ -13,7 +14,8 @@ export class AuthComponent {
   constructor(
     private formBuilder: FormBuilder,
     private authService: AuthService,
-    private router: Router
+    private router: Router,
+    private _toastService: ToastService
   ) {}
 
   register: boolean = false;
@@ -43,10 +45,11 @@ export class AuthComponent {
     this.authService.signIn(this.form.value).subscribe({
       next: () => {
         this.router.navigate(['/admin']);
-      },
-      error: (error: HttpErrorResponse) => {
-        console.error(error);
-      },
+         this._toastService.success('Connexion réussie !');
+      },error: error =>{
+          this._toastService.error(error);
+               console.error(error);
+      }
     });
   }
 }

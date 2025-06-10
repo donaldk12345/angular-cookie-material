@@ -1,0 +1,72 @@
+<div class="custom">
+    <br>
+    <br>
+    <br>
+    <mat-card class="card">
+        <div mat-dialog-title style="justify-content: center; text-align: center;font-weight: bold;">
+            <h2 style="font-weight: bold;"> Informations </h2>
+        </div>
+        <mat-tab-group class="rci">
+            <mat-tab label="Profile">
+                <ng-template mat-tab-label>
+                    <mat-icon>account_circle</mat-icon>
+                    &nbsp;Profile
+                </ng-template>
+                <br>
+                <div class="title" style="text-align: center; text-transform: uppercase; font-weight: bold;">
+                    <h3 class="see" style="font-weight: bold;">Compte</h3>
+                </div>
+                <p> <span style="font-weight: bold;">Nom:  {{user?.username}} </span></p>
+                <mat-divider></mat-divider>
+                <p> <span style="font-weight: bold;">Email:  {{user?.email}} </span></p>
+                <mat-divider></mat-divider>
+                <p> <span style="font-weight: bold;">Role:  {{user?.role}} </span></p>
+                <mat-divider></mat-divider>
+                <p> <span style="font-weight: bold;">Date de création :  {{user?.createdAt| date: 'MM/dd/yyyy HH:mm'}} </span></p>
+
+                <mat-divider></mat-divider>
+                <p> <span style="font-weight: bold;">permissions: <span *ngFor="let item of user?.permissions"> <span> {{item}} </span> </span>
+                    </span>
+                </p>
+            </mat-tab>
+            <mat-tab label="Sécurité">
+                <ng-template mat-tab-label>
+                    <mat-icon>https</mat-icon>
+                    &nbsp;Sécurité
+                </ng-template>
+                <div>
+                    <br>
+                    <div class="title" style="text-align: center; text-transform: uppercase; font-weight: bold;">
+                        <h3 class="see" style="font-weight: bold;">Modifier mon mot de passe</h3>
+                    </div>
+                    <br>
+                    <div class="form">
+                        <form [formGroup]="updateUserPasswordForm" (ngSubmit)="onUpdateUserPasswordSubmit()">
+                            <div mat-dialog-content class="content">
+
+                                <mat-form-field>
+                                    <mat-label>Ancien Mot de passe</mat-label>
+                                    <input matInput placeholder="Ancien" [type]="hide ? 'password' : 'text'" formControlName="currentPassword" required>
+                                    <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                                    <mat-error *ngIf="currentPassword.errors?.['required']" style="color:red ;">Le champ est requis.</mat-error>
+                                </mat-form-field>
+
+                                <mat-form-field>
+                                    <mat-label>Nouveau Mot de passe</mat-label>
+                                    <input matInput placeholder="Nouveau" [type]="hide2 ? 'password' : 'text'" formControlName="newPassword" required>
+                                    <mat-icon matSuffix (click)="hide2 = !hide2">{{hide2 ? 'visibility_off' : 'visibility'}}</mat-icon>
+                                    <mat-error *ngIf="newPassword.errors?.['required']" style="color:red ;">Le champ est requis.</mat-error>
+                                </mat-form-field>
+
+                            </div>
+                            <div mat-dialog-actions class="action">
+                                <button mat-raised-button type="button" [mat-dialog-close]="false">Annuler</button>&nbsp;&nbsp;
+                                <button mat-raised-button color="primary" type="submit" [disabled]="updateUserPasswordForm.status != 'VALID'">Modifier</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </mat-tab>
+        </mat-tab-group>
+    </mat-card>
+</div>

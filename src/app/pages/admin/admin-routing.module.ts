@@ -6,6 +6,7 @@ import { UsersComponent } from './users/users.component';
 import { BlankpageComponent } from './blankpage/blankpage.component';
 import { PersonnelsComponent } from './personnels/personnels.component';
 import { EditUsersComponent } from './users/edit-users/edit-users.component';
+import { ProfileComponent } from './profile/profile.component';
 
 const routes: Routes = [
   {
@@ -13,6 +14,7 @@ const routes: Routes = [
      component: AdminComponent, children:[
          { path: 'dashboard', component: DashboardComponent},
          { path: 'users', component: UsersComponent},
+         {path: 'profile',component:ProfileComponent},
         { path: 'blank', component: BlankpageComponent},
           {path: 'user/:id',component:EditUsersComponent},
         { path: 'personnels', component: PersonnelsComponent},

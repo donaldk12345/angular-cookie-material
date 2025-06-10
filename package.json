@@ -25,6 +25,7 @@
         "@fortawesome/free-brands-svg-icons": "^6.4.2",
         "@fortawesome/free-regular-svg-icons": "^6.4.2",
         "@fortawesome/free-solid-svg-icons": "^6.4.2",
+        "@angular/material-moment-adapter": "^20.0.0-rc",
         "angular-toastify": "^2.0.0",
         "bootstrap": "^5.3.6",
         "mat-timepicker": "^4.1.1",

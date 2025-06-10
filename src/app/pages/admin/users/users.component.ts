@@ -15,6 +15,7 @@ import { UserService } from '../../../services/user/user.service';
 import { ToastService } from 'angular-toastify';
 import { formatDate } from '@angular/common';
 import { UserDetailsComponent } from './user-details/user-details.component';
+import { UserPasswordComponent } from './user-password/user-password.component';
 @Component({
   selector: 'app-users',
   templateUrl: './users.component.html',
@@ -74,6 +75,22 @@ this.getUserList();
       data,
        height: 'auto',
       width: '600px',
+    });
+    dialogRef.afterClosed().subscribe({
+      next: (val) => {
+        if (val) {
+      this.getUserList();
+        }
+      },
+    });
+  }
+
+
+      openUpdatePasswordDialog(data:any) {
+     const dialogRef = this.dialog.open(UserPasswordComponent, {
+      data,
+        height: 'auto',
+      width: '400px',
     });
     dialogRef.afterClosed().subscribe({
       next: (val) => {

@@ -31,12 +31,15 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
+import {MatTabsModule} from '@angular/material/tabs';
 import { ToastService, AngularToastifyModule } from 'angular-toastify'; 
 import { UsersInputAddComponent } from './users/users-input-add/users-input-add.component';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { EditUsersComponent } from './users/edit-users/edit-users.component';
 import { UserDetailsComponent } from './users/user-details/user-details.component';
+import { UserPasswordComponent } from './users/user-password/user-password.component';
+import { ProfileComponent } from './profile/profile.component';
 @NgModule({
   declarations: [
     AdminComponent,
@@ -51,6 +54,8 @@ import { UserDetailsComponent } from './users/user-details/user-details.componen
     DialogConfirmationComponent,
     EditUsersComponent,
     UserDetailsComponent,
+    UserPasswordComponent,
+    ProfileComponent
   ],
   imports: [
     CommonModule,
@@ -59,6 +64,7 @@ import { UserDetailsComponent } from './users/user-details/user-details.componen
     MatDialogModule,
     FormsModule,
     MatRadioModule,
+    MatTabsModule,
      AngularToastifyModule,
     ReactiveFormsModule,
     MatProgressSpinnerModule,
@@ -84,3 +90,15 @@ import { UserDetailsComponent } from './users/user-details/user-details.componen
   ]
 })
 export class AdminModule { }
+
+export const MY_FORMATS = {
+  parse: {
+    dateInput: "YYYY-MM-DD HH:mm:ss"
+  },
+  display: {
+    dateInput: "YYYY-MM-DD HH:mm:ss",
+    monthYearLabel: "MMM YYYY",
+    dateA11yLabel: "YYYY-MM-DD HH:mm:ss",
+    monthYearA11yLabel: "MMMM YYYY"
+  }
+};

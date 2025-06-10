@@ -75,7 +75,7 @@
                     <button mat-icon-button matTooltip="Détails" [matTooltipPosition]="position.value!" (click)="openUSerDetailsDialog(element)" aria-label="Example icon button with a delete icon">
                      <mat-icon style="color:#0f3d4cc8;">remove_red_eye</mat-icon>
                   </button>
-                    <button mat-icon-button title="Modifier le mot de passe" matTooltip="Modifier le mot de passe" [matTooltipPosition]="position.value!" aria-label="Example icon button with a delete icon">
+                    <button mat-icon-button title="Modifier le mot de passe" matTooltip="Modifier le mot de passe" [matTooltipPosition]="position.value!" (click)="openUpdatePasswordDialog(element)" aria-label="Example icon button with a delete icon">
                      <mat-icon style="color:#0f174cc8;">https</mat-icon>
                   </button>
                     <button mat-icon-button aria-label="Example icon button with a delete icon" matTooltip="Supprimer l'utilisateur" [matTooltipPosition]="position.value!" (click)="DelateUserDialog()">

@@ -19,6 +19,14 @@ export class UserService {
     return this.api.putElement('user/'+id,data);
   }
 
+  updateUserPassword(id:number, data:any):Observable<any> {
+    return this.api.putElement('user/password/update/'+id,data);
+  }
+
+    updateMePassword(data:any):Observable<any> {
+    return this.api.post('user/password/update',data);
+  }
+
   getUsersFilter(params:any): Observable<any>{
 
     return this.api.getElementParams('user/list',params);
