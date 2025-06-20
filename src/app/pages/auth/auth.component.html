@@ -1,25 +1,29 @@
-<form
-  class="wrapper"
-  (submit)="register ? signUp($event) : signIn($event)"
-  [formGroup]="form"
->
-  <h3>{{ register ? "SIGN-UP" : "SIGN-IN" }}</h3>
-  <input
-    formControlName="username"
-    type="text"
-    class="username"
-    placeholder="Username"
-  />
-  <input
-    formControlName="password"
-    type="password"
-    class="password"
-    placeholder="Password"
-  />
-  <button [class.inactive]="!form.valid" type="submit">
-    {{ register ? "Sign-Up" : "Sign-In" }}
-  </button>
-  <button class="clear" type="button" (click)="register = !register">
-    {{ register ? "Already have an account?" : "Don't have an account?" }}
-  </button>
-</form>
+<div class="signin-content">
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <mat-card>
+        <mat-card-content>
+            <form [formGroup]="form" (ngSubmit)="signIn()">
+                <h3 style="font-weight: bold;text-transform: uppercase;">Connexion</h3>
+                <mat-form-field class="full-width-input">
+                    <input matInput placeholder="Nom" formControlName="username" required>
+                    <mat-error *ngIf="isFieldInvalid('username')" style="color: red;">
+                        Le nom ne peut pas être nul !
+                    </mat-error>
+                </mat-form-field>
+                <mat-form-field class="full-width-input">
+                    <input matInput type="password" placeholder="Mot de passe" formControlName="password" required>
+                    <mat-error *ngIf="isFieldInvalid('password')" style="color: red;">
+                        Le mot de passe ne peut pas être nul !
+                    </mat-error>
+                </mat-form-field>
+                <button mat-raised-button color="primary" [disabled]="form.status != 'VALID'" type="submit">Connexion &nbsp;&nbsp; <mat-icon *ngIf="loading"><mat-spinner color="accent" style="color: white!important;" diameter="20">
+    </mat-spinner></mat-icon></button>
+            </form>
+
+        </mat-card-content>
+    </mat-card>
+</div>

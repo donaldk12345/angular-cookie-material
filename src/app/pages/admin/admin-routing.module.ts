@@ -7,6 +7,7 @@ import { BlankpageComponent } from './blankpage/blankpage.component';
 import { PersonnelsComponent } from './personnels/personnels.component';
 import { EditUsersComponent } from './users/edit-users/edit-users.component';
 import { ProfileComponent } from './profile/profile.component';
+import { RolesComponent } from './roles/roles.component';
 
 const routes: Routes = [
   {
@@ -18,6 +19,7 @@ const routes: Routes = [
         { path: 'blank', component: BlankpageComponent},
           {path: 'user/:id',component:EditUsersComponent},
         { path: 'personnels', component: PersonnelsComponent},
+        {path: 'roles',component:RolesComponent}
      ]
   }
 ];

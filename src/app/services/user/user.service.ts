@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { ApiService } from '../api.service';
 import { Observable } from 'rxjs';
+import { HttpParams } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -32,9 +33,12 @@ export class UserService {
     return this.api.getElementParams('user/list',params);
   }
 
-    getUsers(): Observable<any>{
+    getUsers(pageIndex: number, pageSize: number): Observable<any>{
+        const params = new HttpParams()
+      .set('page', pageIndex.toString())
+      .set('size', pageSize.toString());
 
-    return this.api.get('user/list');
+    return this.api.getElementParams('user/list', { params });
   }
 
       getUserById(id:number): Observable<any>{

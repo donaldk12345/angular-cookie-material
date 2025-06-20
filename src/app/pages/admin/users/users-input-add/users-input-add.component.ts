@@ -65,7 +65,7 @@ this.getExpired();
         this.userService.updateUser(this.data.id, this.userForm.value)
           .subscribe({
             next: (val: any) => {
-              this._coreService.openSnackBar('User updated!');
+              //this._coreService.openSnackBar('User updated!');
                   this.title="Modifier un utilisateur";
               this.dialogRef.close(true);
             },
@@ -76,7 +76,7 @@ this.getExpired();
       } else {
         this.userService.addUser(this.userForm.value).subscribe({
           next: (val: any) => {
-            this._coreService.openSnackBar('User added successfully');
+            //this._coreService.openSnackBar('User added successfully');
          
                  this.title="Ajouter un utilisateur";
             this.dialogRef.close(true);

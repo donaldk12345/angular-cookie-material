@@ -18,6 +18,8 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { ToastService, AngularToastifyModule } from 'angular-toastify'; 
 import { httpInterceptorProviders } from './interceptor/auth.interceptor';
+import { MatCardModule } from '@angular/material/card';
+import {ProgressSpinnerMode, MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 
 @NgModule({
   declarations: [AppComponent, AuthComponent, HomeComponent],
@@ -25,6 +27,7 @@ import { httpInterceptorProviders } from './interceptor/auth.interceptor';
     BrowserModule,
     AppRoutingModule,
     FontAwesomeModule,
+    MatProgressSpinnerModule,
     HttpClientModule,
     MatButtonModule,
     MatFormFieldModule,
@@ -32,6 +35,7 @@ import { httpInterceptorProviders } from './interceptor/auth.interceptor';
         AngularToastifyModule,
     MatSelectModule,
     AdminModule,
+    MatCardModule,
     MatDividerModule,
     MatIconModule,
     FormsModule,

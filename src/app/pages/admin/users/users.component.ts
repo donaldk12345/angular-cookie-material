@@ -1,6 +1,6 @@
 import { AfterViewInit, Component, inject, Inject, OnInit, ViewChild } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dialog';
-import { MatPaginator } from '@angular/material/paginator';
+import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { ConfirmationDialogComponent } from '../confirmation-dialog/confirmation-dialog.component';
 import {
@@ -26,6 +26,10 @@ export class UsersComponent implements AfterViewInit,OnInit{
   displayedColumns: string[] = ['username', 'role','email','statut','date','expiredDate','expired','actions'];
   //dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
     dataSource!: MatTableDataSource<any>;
+  totalUsers:any;
+  pageSize = 10;
+  pageIndex = 0;
+  @ViewChild('paginatorPageSize') paginatorPageSize: MatPaginator | undefined;
   @ViewChild(MatPaginator)
   paginator!: MatPaginator;
   userForm: FormGroup = Object.create(null);
@@ -146,9 +150,10 @@ this.getUserList();
 
     getUserList(){
       this.loading=true;
-       this.userService.getUsers().subscribe({
+       this.userService.getUsers(this.pageIndex, this.pageSize).subscribe({
      next: data =>{
       this.users=data.content;
+      this.totalUsers = data.totalElements;
           this.loading=false;
        this.dataSource = new MatTableDataSource(data.content);
       console.log("users",this.dataSource);
@@ -157,6 +162,11 @@ this.getUserList();
 
     }
 
+      onPageChange(event: PageEvent): void {
+    this.pageIndex = event.pageIndex;
+    this.pageSize = event.pageSize;
+    this.getUserList();
+  }
     
     getUserById(id:number){
        this.userService.getUserById(id).subscribe({

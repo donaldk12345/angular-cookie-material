@@ -88,7 +88,7 @@
             <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
         </table>
 
-        <mat-paginator [pageSizeOptions]="[10,20,30]" showFirstLastButtons aria-label="Select page of periodic elements">
+        <mat-paginator [length]="totalUsers" [pageSize]="pageSize" (page)="onPageChange($event)" [pageSizeOptions]="[10,20,30]" showFirstLastButtons aria-label="Select page of periodic elements">
         </mat-paginator>
     </div>
 

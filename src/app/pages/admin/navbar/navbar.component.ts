@@ -37,6 +37,8 @@ export class NavbarComponent  implements OnInit{
   onLoggedout() {
     this.auth.logout();
     localStorage.removeItem('isLoggedin');
+      sessionStorage.clear();
+        localStorage.clear();
     this.router.navigate(['/auth']);
   }
 

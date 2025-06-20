@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
 import { HttpErrorResponse } from '@angular/common/http';
@@ -10,20 +10,28 @@ import { ToastService } from 'angular-toastify';
   templateUrl: './auth.component.html',
   styleUrl: './auth.component.scss',
 })
-export class AuthComponent {
+export class AuthComponent implements OnInit{
+
+  form: FormGroup = Object.create(null);
+  loading:boolean = false;
+    private formSubmitAttempt: boolean | undefined;
   constructor(
-    private formBuilder: FormBuilder,
+    private fb: FormBuilder,
     private authService: AuthService,
     private router: Router,
     private _toastService: ToastService
   ) {}
 
+
+  ngOnInit(): void {
+     this.form = this.fb.group({
+username: new FormControl('',[Validators.required]),
+    password:new FormControl('', [Validators.required, Validators.minLength(4)]),
+     })
+  }
+
   register: boolean = false;
 
-  form: FormGroup = this.formBuilder.group({
-    username: ['', Validators.required],
-    password: ['', Validators.required],
-  });
 
   signUp(e: Event) {
     e.preventDefault();
@@ -39,16 +47,26 @@ export class AuthComponent {
     });
   }
 
-  signIn(e: Event) {
-    e.preventDefault();
+  
+  isFieldInvalid(field: string) {
+    return (
+      (!this.form.get(field)?.valid && this.form.get(field)?.touched) ||
+      (this.form.get(field)?.untouched && this.formSubmitAttempt)
+    );
+  }
+
+  signIn() {
+    this.loading = true;
 
     this.authService.signIn(this.form.value).subscribe({
       next: () => {
         this.router.navigate(['/admin']);
          this._toastService.success('Connexion réussie !');
+         this.loading=false;
       },error: error =>{
           this._toastService.error(error);
                console.error(error);
+                   this.loading=false;
       }
     });
   }
