@@ -31,4 +31,9 @@ export class ApiService {
     return this.httpClient.put(`${this.baseUrl}${url}`, data);
    }
 
+   
+  deleteElement(url: string): Observable<any> {
+    return this.httpClient.delete(`${this.baseUrl}${url}`);
+  }
+
 }

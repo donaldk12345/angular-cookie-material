@@ -16,6 +16,12 @@ export class UserService {
     return this.api.post('user/add',data);
   }
 
+  importUserData(data:any): Observable<any>{
+
+    return this.api.post('user/import',data);
+
+  }
+
   updateUser(id: number, data: any): Observable<any> {
     return this.api.putElement('user/'+id,data);
   }
@@ -24,6 +30,10 @@ export class UserService {
     return this.api.putElement('user/password/update/'+id,data);
   }
 
+  deleteUser(id:number):Observable<any>{
+
+    return this.api.deleteElement('user/delete/'+id);
+  }
     updateMePassword(data:any):Observable<any> {
     return this.api.post('user/password/update',data);
   }

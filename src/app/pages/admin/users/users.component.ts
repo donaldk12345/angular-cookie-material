@@ -16,12 +16,14 @@ import { ToastService } from 'angular-toastify';
 import { formatDate } from '@angular/common';
 import { UserDetailsComponent } from './user-details/user-details.component';
 import { UserPasswordComponent } from './user-password/user-password.component';
+import { UserImportDataComponent } from './user-import-data/user-import-data.component';
 @Component({
   selector: 'app-users',
   templateUrl: './users.component.html',
   styleUrl: './users.component.scss'
 })
 export class UsersComponent implements AfterViewInit,OnInit{
+
 
   displayedColumns: string[] = ['username', 'role','email','statut','date','expiredDate','expired','actions'];
   //dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
@@ -161,12 +163,33 @@ this.getUserList();
     })
 
     }
+    refreshUserData() {
+      this.getUserList();
+
+}
 
       onPageChange(event: PageEvent): void {
     this.pageIndex = event.pageIndex;
     this.pageSize = event.pageSize;
     this.getUserList();
   }
+
+  importUserData() {
+
+     const dialogRef = this.dialog.open(UserImportDataComponent, {
+        height: 'auto',
+      width: '450px',
+    });
+    dialogRef.afterClosed().subscribe({
+      next: (val) => {
+   
+          this.getUserList();
+        
+      },
+    });
+
+}
+
     
     getUserById(id:number){
        this.userService.getUserById(id).subscribe({
@@ -202,30 +225,50 @@ this.getUserList();
 
     }
 
-    DelateUserDialog() {
+    DelateUserDialog(dat:any) {
     const dialogRef = this.dialog.open(ConfirmationDialogComponent,{
       data:{
         message: 'Are you sure want to delete?',
+
         buttonText: {
-          ok: 'Save',
-          cancel: 'No'
-        }
+           ok: 'OUI',
+          cancel: 'NON'
+        },
+        
       }
     });
 
     dialogRef.afterClosed().subscribe((confirmed: boolean) => {
       if (confirmed) {
         this.snack.dismiss();
+        console.log('delete user');
+        this.deleteUser(dat.id);
         const a = document.createElement('a');
         a.click();
         a.remove();
         this.snack.dismiss();
-        this.snack.open('Closing snack bar in a few seconds', 'Fechar', {
+       /* this.snack.open('Closing snack bar in a few seconds', 'Fechar', {
           duration: 2000,
           
-        });
+        });*/
       }
     });
+  }
+
+  deleteUser(id:number){
+
+    this.userService.deleteUser(id).subscribe({
+       next: data =>{
+         this._toastService.success('Utilisateur supprimer avec succès');
+         this.getUserList();
+       },
+        error: error =>{
+                 this._toastService.success(error);
+             console.log('error!', error);
+        }
+
+    })
+
   }
 
     async refresh(): Promise<void> {

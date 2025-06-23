@@ -20,15 +20,15 @@ mat-card {
         white-space: nowrap;
     }
     &.danger {
-        background: linear-gradient(60deg, #ec407a, #d81b60);
+        background: linear-gradient(60deg, #fff, #fff);
     }
     &.warn {
-        background: linear-gradient(60deg, #ffa726, #fb8c00);
+        background: linear-gradient(60deg, #fff, #fff);
     }
     &.success {
-        background: linear-gradient(60deg, #66bb6a, #43a047);
+        background: linear-gradient(60deg, #fff, #fff);
     }
     &.info {
-        background: linear-gradient(60deg, #26c6da, #00acc1);
+        background: linear-gradient(60deg, #fff, #fff);
     }
 }

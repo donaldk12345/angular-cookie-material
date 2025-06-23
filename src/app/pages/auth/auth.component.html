@@ -9,12 +9,24 @@
             <form [formGroup]="form" (ngSubmit)="signIn()">
                 <h3 style="font-weight: bold;text-transform: uppercase;">Connexion</h3>
                 <mat-form-field class="full-width-input">
+                    <div style="margin-bottom:-30px;">
+                        <mat-icon style="margin-top:-2px" matPrefix></mat-icon>
+                    </div>
+                    <span matPrefix>
+                <mat-icon> person_pin</mat-icon>
+                      </span>
                     <input matInput placeholder="Nom" formControlName="username" required>
                     <mat-error *ngIf="isFieldInvalid('username')" style="color: red;">
                         Le nom ne peut pas être nul !
                     </mat-error>
                 </mat-form-field>
                 <mat-form-field class="full-width-input">
+                    <div style="margin-bottom:-30px;">
+                        <mat-icon style="margin-top:-2px" matPrefix></mat-icon>
+                    </div>
+                    <span matPrefix>
+         <mat-icon>https</mat-icon>
+                      </span>
                     <input matInput type="password" placeholder="Mot de passe" formControlName="password" required>
                     <mat-error *ngIf="isFieldInvalid('password')" style="color: red;">
                         Le mot de passe ne peut pas être nul !

@@ -1,0 +1,28 @@
+<div style="margin-top: 10px;" *ngIf="loading">
+    <mat-progress-bar mode="indeterminate" style="width: 96%; margin: auto;"></mat-progress-bar>
+</div>
+<div mat-dialog-title style="justify-content: center; text-align: center;font-weight: bold;">
+    <h2>Ajouter à partir d'un fichier</h2>
+</div>
+
+<form (ngSubmit)="upload()">
+    <div mat-dialog-content class="content">
+
+        <mat-form-field>
+            <div>
+                <mat-toolbar>
+                    <input matInput [value]="fileName" />
+
+                </mat-toolbar>
+
+                <input type="file" id="fileInput" [disabled]="isDisable" (change)="selectFile($event)" name="fileInput" />
+                <mat-error *ngIf="isDisable==true" style="color:red ; font-size: 12px;">Le format n'est pas valide !</mat-error>
+            </div>
+        </mat-form-field>
+    </div>
+    <div mat-dialog-actions class="action">
+        <button mat-raised-button type="button" [mat-dialog-close]="false">Annuler &nbsp;</button>
+        <button mat-raised-button color="primary" [disabled]="isDisable" type="submit">Importer</button>
+    </div>
+
+</form>

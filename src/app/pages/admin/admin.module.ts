@@ -41,6 +41,7 @@ import { UserDetailsComponent } from './users/user-details/user-details.componen
 import { UserPasswordComponent } from './users/user-password/user-password.component';
 import { ProfileComponent } from './profile/profile.component';
 import { RolesComponent } from './roles/roles.component';
+import { UserImportDataComponent } from './users/user-import-data/user-import-data.component';
 @NgModule({
   declarations: [
     AdminComponent,
@@ -57,7 +58,8 @@ import { RolesComponent } from './roles/roles.component';
     UserDetailsComponent,
     UserPasswordComponent,
     ProfileComponent,
-    RolesComponent
+    RolesComponent,
+    UserImportDataComponent
   ],
   imports: [
     CommonModule,
