@@ -16,8 +16,6 @@ export class AuthService {
   }
 
   logout() {
-       sessionStorage.clear();
-        localStorage.clear();
     return this.apiService.post('auth/logout', {});
   }
 

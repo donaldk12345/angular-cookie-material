@@ -34,24 +34,39 @@ export class NavbarComponent  implements OnInit{
       });
     }
 
+     logout() {
+    this.auth.logout().subscribe({
+      next: () => {
+             window.sessionStorage.clear();
+        this.router.navigate(['/auth']);
+           /*    setInterval(() => {
+               location.reload();
+      }, 1000);*/
+        
+      },
+      error: (error) => {
+        console.error(error);
+      },
+    });
+  }
+
   onLoggedout() {
+    console.log("Hi !");
+     window.sessionStorage.clear();
     this.auth.logout();
     localStorage.removeItem('isLoggedin');
-      sessionStorage.clear();
-        localStorage.clear();
     this.router.navigate(['/auth']);
   }
 
 
     confirLogout(){
-    this.dialog
-      .open(DialogConfirmationComponent, {
+    this.dialog.open(DialogConfirmationComponent, {
         data: 'Vous allez être déconnecté ?'
       })
       .afterClosed()
       .subscribe((confirmado: Boolean) => {
         if (confirmado) {
-          this.onLoggedout();
+          this.logout();
         } else {
         
         }
